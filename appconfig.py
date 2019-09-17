@@ -7,4 +7,5 @@ class AppConfig:
         "ANNOTATION_TRIGGER", "org.debarrage.dns")
     annotation_confirmed = os.getenv(
         "ANNOTATION_CONFIRMED", "org.debarrage.dns.confirmed")
+    namespace = os.getenv("NAMESPACE", "default")
 

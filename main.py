@@ -2,7 +2,8 @@ import signal
 
 from kubernetes import client, config, watch
 from appconfig import AppConfig
-from services.kubernetesfunctions import find_ips, process_ingress
+from services.azurefunctions import create_dns, resolve_dns_event
+from services.kubernetesfunctions import find_ips, process_ingress, ingress_subdomain
 from services.loggerfunctions import create_logger
 import sys
 
@@ -34,13 +35,21 @@ signal.signal(signal.SIGINT, lambda s, frame: w.stop())
 signal.signal(signal.SIGINT, lambda s, frame: log.critical("Received SIGINT"))
 
 # Core watch loop
-for item in w.stream(extv1beta1.list_namespaced_ingress, "debarrage", watch=10):
+log.info("Listening on namespace %s" % appConfig.namespace)
+for item in w.stream(extv1beta1.list_namespaced_ingress, appConfig.namespace):
     try:
         ingress = item['object']
         event = item['type']
         name = ingress.metadata.name
         if process_ingress(ingress, appConfig):
             log.info("Processing %s %s" % (name, event))
+            subdomain = ingress_subdomain(ingress, appConfig)
+            action = resolve_dns_event(event)
+            if action is not None:
+                for ip in ips:
+                    action(subdomain, ip, appConfig)
+
+
         else:
             log.debug("Skipping %s" % name)
         # print(ingress.metadata.annotations)
@@ -48,5 +57,7 @@ for item in w.stream(extv1beta1.list_namespaced_ingress, "debarrage", watch=10):
     except:
         log.error("Something went wrong while looping", sys.exc_info())
         w.stop()
+        sys.exit(1)
 
 log.info("The program has stopped")
+sys.exit(0)

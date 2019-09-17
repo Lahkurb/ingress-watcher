@@ -1,6 +1,10 @@
 from kubernetes.client import CoreV1Api
+from services.loggerfunctions import create_logger
 
 from appconfig import AppConfig
+
+# Instantiate logging
+log = create_logger("kubernetes")
 
 system_namespace = "kube-system"
 
@@ -15,10 +19,14 @@ def find_ips(v1: CoreV1Api):
                 for i in s.status.load_balancer.ingress:
                     ips.append(i.ip)
         except:
-            print("Cannot process service %s" % s.metadata.self_link)
+            log.info("Cannot process service %s" % s.metadata.self_link)
     # except:
     #     print("Cannot get all services in %s" % system_namespace)
-    return ips
+
+    if len(ips) > 0:
+        return ips
+    else:
+        return ["127.0.0.1"]
 
 
 def process_ingress(ingress, appConfig: AppConfig):
@@ -26,3 +34,8 @@ def process_ingress(ingress, appConfig: AppConfig):
         if appConfig.annotation_trigger in ingress.metadata.annotations:
             return True
     return False
+
+
+def ingress_subdomain(ingress, appConfig: AppConfig):
+    if process_ingress(ingress, appConfig):
+        return ingress.metadata.annotations[appConfig.annotation_trigger]

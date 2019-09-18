@@ -2,8 +2,8 @@ import signal
 
 from kubernetes import client, config, watch
 from appconfig import AppConfig
-from services.azurefunctions import create_dns, resolve_dns_event
-from services.kubernetesfunctions import find_ips, process_ingress, ingress_subdomain
+from services.azurefunctions import resolve_dns_event
+from services.kubernetesfunctions import find_ips, process_ingress, ingress_subdomain, ingress_markprocessed
 from services.loggerfunctions import create_logger
 import sys
 
@@ -38,26 +38,29 @@ signal.signal(signal.SIGINT, lambda s, frame: log.critical("Received SIGINT"))
 log.info("Listening on namespace %s" % appConfig.namespace)
 for item in w.stream(extv1beta1.list_namespaced_ingress, appConfig.namespace):
     try:
+        # Get the ingress, event and name
         ingress = item['object']
         event = item['type']
         name = ingress.metadata.name
+
+        # Check if the ingress contains the correct annotations, if so proceed
         if process_ingress(ingress, appConfig):
-            log.info("Processing %s %s" % (name, event))
+            # Get subdomain from the annotation
             subdomain = ingress_subdomain(ingress, appConfig)
+
+            # Resolve the correct action
             action = resolve_dns_event(event)
             if action is not None:
-                for ip in ips:
-                    action(subdomain, ip, appConfig)
-
+                log.info("Processing %s %s" % (name, event))
+                result = action(subdomain, ips, appConfig)
 
         else:
             log.debug("Skipping %s" % name)
-        # print(ingress.metadata.annotations)
-        # # print("Event: %s %s" % (event['type'], event['object'].metadata.name))
     except:
         log.error("Something went wrong while looping", sys.exc_info())
         w.stop()
         sys.exit(1)
 
+# Exit the program
 log.info("The program has stopped")
 sys.exit(0)

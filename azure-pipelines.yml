@@ -30,6 +30,15 @@ steps:
     pip install -r requirements.txt
   displayName: 'Install dependencies'
 
+- task: GitHubRelease@0
+  inputs:
+    gitHubConnection: 'Github GieSpaepen'
+    repositoryName: '$(Build.Repository.Name)'
+    action: 'create'
+    target: '$(Build.SourceVersion)'
+    tagSource: 'auto'
+    compareWith: 'lastFullRelease'
+
 # - script: |
 #    pip install pytest pytest-azurepipelines
 #    pytest

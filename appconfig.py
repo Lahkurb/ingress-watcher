@@ -6,7 +6,7 @@ class AppConfig:
     # Ingress manifest annotation to trigger this script
     annotation_trigger = os.getenv("ANNOTATION_TRIGGER", "org.debarrage.dns")
 
-    # Namespace to watch
+    # Namespace to watch, default value is default
     namespace = os.getenv("NAMESPACE", "default")
 
     # Azure Tenant ID

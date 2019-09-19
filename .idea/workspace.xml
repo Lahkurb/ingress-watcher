@@ -4,9 +4,6 @@
     <list default="true" id="5afa1d8b-24ab-434d-a025-f517eded7d85" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/appconfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/appconfig.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/azurefunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/azurefunctions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/loggerfunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/loggerfunctions.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,11 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="420">
-              <caret line="28" column="73" selection-start-line="28" selection-start-column="73" selection-end-line="28" selection-end-column="73" />
+              <caret line="28" column="73" lean-forward="true" selection-start-line="28" selection-start-column="73" selection-end-line="28" selection-end-column="73" />
             </state>
           </provider>
         </entry>
@@ -78,11 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/appconfig.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
-              <caret line="6" column="77" selection-start-line="6" selection-start-column="77" selection-end-line="6" selection-end-column="77" />
+              <caret line="6" column="58" selection-start-line="6" selection-start-column="58" selection-end-line="6" selection-end-column="75" />
             </state>
           </provider>
         </entry>
@@ -121,15 +118,15 @@
         <option value="$PROJECT_DIR$/config.py" />
         <option value="$PROJECT_DIR$/services/azurefunctions.py" />
         <option value="$PROJECT_DIR$/services/loggerfunctions.py" />
-        <option value="$PROJECT_DIR$/appconfig.py" />
         <option value="$PROJECT_DIR$/services/kubernetesfunctions.py" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/appconfig.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
+    <option name="y" value="263" />
     <option name="width" value="1920" />
     <option name="height" value="1130" />
   </component>
@@ -247,15 +244,15 @@
       <workItem from="1568663174374" duration="1419000" />
       <workItem from="1568699815907" duration="1531000" />
       <workItem from="1568747609119" duration="2192000" />
-      <workItem from="1568794642296" duration="4617000" />
+      <workItem from="1568794642296" duration="5043000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19426000" />
+    <option name="totallyTimeSpent" value="19852000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="1130" extended-state="6" />
+    <frame x="0" y="263" width="1920" height="1130" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20713525" />
@@ -347,13 +344,6 @@
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/appconfig.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="77" selection-start-line="6" selection-start-column="77" selection-end-line="6" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/services/kubernetesfunctions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
@@ -377,7 +367,14 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
-          <caret line="28" column="73" selection-start-line="28" selection-start-column="73" selection-end-line="28" selection-end-column="73" />
+          <caret line="28" column="73" lean-forward="true" selection-start-line="28" selection-start-column="73" selection-end-line="28" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appconfig.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="58" selection-start-line="6" selection-start-column="58" selection-end-line="6" selection-end-column="75" />
         </state>
       </provider>
     </entry>

@@ -26,4 +26,5 @@ kubernetes cluster.
 The program is entirely configured with environment variables. Look at the file `appconfig.py` to see all
 required environment variables and what they mean.
 
+
 In order to make it work, all environment variables must be instantiated!

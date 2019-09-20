@@ -38,7 +38,7 @@ steps:
     gitHubConnection: 'Github GieSpaepen'
     repositoryName: '$(Build.Repository.Name)'
     action: 'create'
-    target: '$(Build.SourceVersion)'
+    target: 'master'
     tagSource: 'manual'
     tag: '$(GitVersion.SemVer)'
     compareWith: 'lastFullRelease'

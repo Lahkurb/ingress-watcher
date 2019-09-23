@@ -16,8 +16,6 @@ spec:
         app.kubernetes.io/instance: {{ .Release.Name }}
         app: {{ include "project.name" . }}
     spec:
-      imagePullSecrets:
-        - name: {{ default "docker-registry" .Values.imagePullSecret }}
       containers:
         - name: {{ include "project.name" . }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -31,17 +29,5 @@ spec:
                 name: {{ include "project.name" . }}
             - secretRef:
                 name: {{ include "project.name" . }}
-          livenessProbe:
-            httpGet:
-              path: {{ .Values.image.livenessPath }}
-              port: http
-            initialDelaySeconds: {{ default 10 .Values.image.initialDelaySeconds }}
-            periodSeconds: {{ default 10 .Values.image.periodSeconds }}
-          readinessProbe: 
-            httpGet:
-              path: {{ .Values.image.livenessPath }}
-              port: http
-            initialDelaySeconds: {{ default 5 .Values.image.initialDelaySeconds }}
-            periodSeconds: {{ default 10 .Values.image.periodSeconds }}
           resources:
 {{- toYaml .Values.resources | nindent 12 }}

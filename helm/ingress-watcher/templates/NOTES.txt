@@ -9,10 +9,6 @@ DEPLOYMENT {{- $fullName | upper -}}:{{- $version -}}
   Container port: {{ .Values.image.port }}
   Service port: {{ .Values.service.port }}
 
-2. Ingress
-  Enabled: {{ .Values.ingress.enabled | ternary "yes" "no" }}
-  Production: {{ .Values.ingress.production | ternary "yes" "no" }}
-
 3. Start application
 {{- if .Values.ingress.enabled -}}
   Go to: https://{{- include "project.tls.host" . -}}/

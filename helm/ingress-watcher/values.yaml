@@ -11,56 +11,20 @@
 # Minimal replica count
 replicaCount: 1
 
-# Pod disruption budget, will automatically be set to 0 when
-minAvailable: 1
-
 image:
   # The image repository
   repository: to-be-overridden
   # The image tag, needs to be overridden
   tag: latest
-  # The container port
-  port: 8080
-  # The http path to check the liveness
-  livenessPath: /
-  # The name of the image pull secret
-  imagePullSecret: docker-registry
-  # Set the initial delay in seconds before the liveness and readiness probes kick in
-  initialDelaySeconds: 5
-
-service:
-  # The port on which the service needs to be exposed
-  port: 80
-
-ingress:
-  # Should enable ingress or not
-  enabled: false
-  # Set true if you want to enable our standard google authentication
-  authEnabled: false
-  # True only for production environment, otherwise false
-  production: false
-  # Optional value, with this value you can set a custom host subdomain. E.g. if your subdomain value is test123
-  # the full hostname will result in (production) test123.app.debarrage.org
-  # subdomain: ""
-  # Optional value, when not set the default value is project fullname plus default domain
-  # host: ""
-  path: /
-  issuer: letsencrypt-prod
-  # Default class of the ingress class
-  class: nginx
-
-  # Provide extra annotations for the ingress, such as path rewrites... Do not forget to remove {} 
-  # when you fill this in...
-  annotations: {}
 
 # Define resources for your deployment. 
 resources:
   limits:
     cpu: 300m
-    memory: 512Mi
+    memory: 256Mi
   requests:
     cpu: 200m
-    memory: 256Mi
+    memory: 125Mi
 
 # This is an example how secrets can be interpolated into your secrets file. A good practice
 # is not to store your variables or secrets in the pipeline but to use an Azure Keyvault. Contact

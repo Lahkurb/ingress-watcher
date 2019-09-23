@@ -5,9 +5,9 @@ metadata:
   labels:
 {{ include "project.labels" . | indent 4 }}
 data:
-  # Fill in your config map, e.g.:
-  # ENV_VALUE: "some value"
-
-  # This value is important for Java projects to avoid OOM Killed events of your pods
-  # The value should be passed to your java start command of course...
-  # JAVA_OPTS: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Xms{{ .Values.resources.requests.memory | replace "Mi" "m" }} -Xmx{{ .Values.resources.limits.memory | replace "Mi" "m" }}"
+  AZ_TENANT: ""
+  AZ_SUBSCRIPTION: ""
+  AZ_USER: ""
+  AZ_PWD: ""
+  AZ_RESGROUP: ""
+  AZ_DNS: ""

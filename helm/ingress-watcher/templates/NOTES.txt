@@ -1,0 +1,22 @@
+{{- $fullName := include "project.fullname" . -}}
+{{- $version := default .Chart.AppVersion .Values.version -}}
+DEPLOYMENT {{- $fullName | upper -}}:{{- $version -}}
+
+1. Deployment
+  Name: {{ include "project.name" . }}
+  Version: {{ $version }}
+  Image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+  Container port: {{ .Values.image.port }}
+  Service port: {{ .Values.service.port }}
+
+2. Ingress
+  Enabled: {{ .Values.ingress.enabled | ternary "yes" "no" }}
+  Production: {{ .Values.ingress.production | ternary "yes" "no" }}
+
+3. Start application
+{{- if .Values.ingress.enabled -}}
+  Go to: https://{{- include "project.tls.host" . -}}/
+{{- else -}}
+  export POD_NAME=$(kubectl get pods --namespace {{ .Values.namespace }} -l "app.kubernetes.io/name={{ include "project.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
+  kubectl port-forward $POD_NAME 8080:{{- .Values.image.port -}}
+{{- end -}}

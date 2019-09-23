@@ -3,7 +3,7 @@ import signal
 from kubernetes import client, config, watch
 from appconfig import AppConfig
 from services.azurefunctions import resolve_dns_event
-from services.kubernetesfunctions import find_ips, process_ingress, ingress_subdomain, ingress_markprocessed
+from services.kubernetesfunctions import find_ips, process_ingress, ingress_subdomain
 from services.loggerfunctions import create_logger
 import sys
 
@@ -11,7 +11,11 @@ import sys
 log = create_logger("ingress-watcher")
 
 # Load the kubernetes configuration from the kubeconfig file
-config.load_kube_config()
+try:
+    config.load_incluster_config()
+except:
+    config.load_kube_config()
+
 
 # Instantiate the kubernetes clients
 v1 = client.CoreV1Api()

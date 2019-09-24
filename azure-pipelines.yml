@@ -7,20 +7,11 @@ trigger:
 - master
 
 variables:
-  helm: 2.14.0
+  helm.version: 2.14.0
+  python.version: '3.7'
 
 pool:
   vmImage: 'ubuntu-latest'
-strategy:
-  matrix:
-    Python27:
-      python.version: '2.7'
-    Python35:
-      python.version: '3.5'
-    Python36:
-      python.version: '3.6'
-    Python37:
-      python.version: '3.7'
 
 steps:
 - task: GitVersion@5
@@ -38,7 +29,7 @@ steps:
 
 - task: HelmInstaller@1
   inputs:
-    helmVersionToInstall: '$(helm)'
+    helmVersionToInstall: '$(helm.version)'
 
 - task: HelmDeploy@0
   inputs:

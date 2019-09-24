@@ -6,13 +6,3 @@ DEPLOYMENT {{- $fullName | upper -}}:{{- $version -}}
   Name: {{ include "project.name" . }}
   Version: {{ $version }}
   Image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
-  Container port: {{ .Values.image.port }}
-  Service port: {{ .Values.service.port }}
-
-3. Start application
-{{- if .Values.ingress.enabled -}}
-  Go to: https://{{- include "project.tls.host" . -}}/
-{{- else -}}
-  export POD_NAME=$(kubectl get pods --namespace {{ .Values.namespace }} -l "app.kubernetes.io/name={{ include "project.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
-  kubectl port-forward $POD_NAME 8080:{{- .Values.image.port -}}
-{{- end -}}

@@ -6,7 +6,7 @@
 # environment: development
 
 # Define the app version
-# version: 0.1.0
+version: 0.1.0
 
 # Minimal replica count
 replicaCount: 1

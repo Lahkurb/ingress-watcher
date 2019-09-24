@@ -8,7 +8,6 @@ data:
   AZ_TENANT: "{{ .Values.azure.tenant }}"
   AZ_SUBSCRIPTION: "{{ .Values.azure.subscription }}"
   AZ_USER: "{{ .Values.azure.user }}"
-  AZ_PWD: "{{ .Values.azure.pwd }}"
   AZ_RESGROUP: "{{ .Values.azure.resgroup }}"
   AZ_DNS: "{{ .Values.azure.dns }}"
   NAMESPACE: "{{ .Values.namespace }}"

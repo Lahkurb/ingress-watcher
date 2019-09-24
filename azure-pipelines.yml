@@ -6,6 +6,9 @@
 trigger:
 - master
 
+variables:
+  helm: 2.14.0
+
 pool:
   vmImage: 'ubuntu-latest'
 strategy:
@@ -33,15 +36,21 @@ steps:
     pip install -r requirements.txt
   displayName: 'Install dependencies'
 
-- task: GitHubRelease@0
+- task: HelmInstaller@1
   inputs:
-    gitHubConnection: 'Github GieSpaepen'
-    repositoryName: '$(Build.Repository.Name)'
-    action: 'create'
-    target: 'master'
-    tagSource: 'manual'
-    tag: '$(GitVersion.SemVer)'
-    compareWith: 'lastFullRelease'
+    helmVersionToInstall: '$(helm)'
+
+- task: HelmDeploy@0
+  inputs:
+    connectionType: 'None'
+    command: 'package'
+    chartPath: './helm/ingress-watcher'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
 
 # - script: |
 #    pip install pytest pytest-azurepipelines

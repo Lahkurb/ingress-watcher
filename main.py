@@ -14,7 +14,11 @@ log = create_logger("ingress-watcher")
 try:
     config.load_incluster_config()
 except:
-    config.load_kube_config()
+    try:
+        config.load_kube_config()
+    except:
+        log.fatal("Cannot load neither incluster or kubeconfig.")
+        sys.exit(1)
 
 
 # Instantiate the kubernetes clients

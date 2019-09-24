@@ -3,7 +3,6 @@ import sys
 from appconfig import AppConfig
 from services.loggerfunctions import create_logger
 from azure.mgmt.dns import DnsManagementClient
-from azure.common.credentials import UserPassCredentials
 from azure.common.credentials import ServicePrincipalCredentials
 
 # Instantiate logging

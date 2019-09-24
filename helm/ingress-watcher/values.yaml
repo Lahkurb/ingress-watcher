@@ -11,6 +11,15 @@
 # Minimal replica count
 replicaCount: 1
 
+# Azure settings
+azure:
+  tenant: ""
+  subscription: ""
+  user: ""
+  resgroup: ""
+  dns: ""
+  pwd: ""
+
 image:
   # The image repository
   repository: to-be-overridden

@@ -5,9 +5,10 @@ metadata:
   labels:
 {{ include "project.labels" . | indent 4 }}
 data:
-  AZ_TENANT: ""
-  AZ_SUBSCRIPTION: ""
-  AZ_USER: ""
-  AZ_PWD: ""
-  AZ_RESGROUP: ""
-  AZ_DNS: ""
+  AZ_TENANT: "{{ .Values.azure.tenant }}"
+  AZ_SUBSCRIPTION: "{{ .Values.azure.subscription }}"
+  AZ_USER: "{{ .Values.azure.user }}"
+  AZ_PWD: "{{ .Values.azure.pwd }}"
+  AZ_RESGROUP: "{{ .Values.azure.resgroup }}"
+  AZ_DNS: "{{ .Values.azure.dns }}"
+  NAMESPACE: "{{ .Values.namespace }}"

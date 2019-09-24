@@ -1,5 +1,5 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: batch/v1
+kind: Job
 metadata:
   name: {{ include "project.name" . }}
   labels:
@@ -16,14 +16,11 @@ spec:
         app.kubernetes.io/instance: {{ .Release.Name }}
         app: {{ include "project.name" . }}
     spec:
+      restartPolicy: OnFailure
       containers:
         - name: {{ include "project.name" . }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "IfNotPresent"
-          ports:
-            - name: http
-              containerPort: {{ .Values.image.port }}
-              protocol: TCP
           envFrom:
             - configMapRef:
                 name: {{ include "project.name" . }}

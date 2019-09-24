@@ -22,10 +22,10 @@ steps:
     versionSpec: '$(python.version)'
   displayName: 'Use Python $(python.version)'
 
-- script: |
-    python -m pip install --upgrade pip
-    pip install -r requirements.txt
-  displayName: 'Install dependencies'
+# - script: |
+#     python -m pip install --upgrade pip
+#     pip install -r requirements.txt
+#   displayName: 'Install dependencies'
 
 - task: HelmInstaller@1
   inputs:
@@ -35,7 +35,7 @@ steps:
   inputs:
     connectionType: 'None'
     command: 'package'
-    chartPath: './helm/ingress-watcher'
+    chartPath: 'helm/ingress-watcher'
 
 - task: PublishBuildArtifacts@1
   inputs:

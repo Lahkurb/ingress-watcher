@@ -8,7 +8,6 @@ spec:
   selector:
     matchLabels:
 {{ include "project.selector" . | indent 6 }}
-  replicas: {{ .Values.replicaCount }}
   template:
     metadata:
       labels:

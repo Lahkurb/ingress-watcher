@@ -16,6 +16,7 @@ azure:
   resgroup: ""
   dns: ""
   pwd: ""
+  zone: ""
 
 image:
   # The image repository

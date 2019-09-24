@@ -11,3 +11,4 @@ data:
   AZ_RESGROUP: "{{ .Values.azure.resgroup }}"
   AZ_DNS: "{{ .Values.azure.dns }}"
   NAMESPACE: "{{ .Values.namespace }}"
+  DNS_ZONE: "{{ .Values.azure.zone }}"

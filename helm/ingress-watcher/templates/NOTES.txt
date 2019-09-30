@@ -6,3 +6,5 @@ DEPLOYMENT {{- $fullName | upper -}}:{{- $version -}}
   Name: {{ include "project.name" . }}
   Version: {{ $version }}
   Image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+
+THIS IS A JOB
